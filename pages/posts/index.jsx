@@ -1,3 +1,6 @@
+import AllPosts from "../../components/posts/all-posts";
+import { DUMMY_POSTS } from "../index";
+
 export default function AllPostsPage() {
-  return <div className={styles.container}>Hello Next</div>;
+  return <AllPosts posts={DUMMY_POSTS} />;
 }
