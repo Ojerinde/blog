@@ -21,11 +21,12 @@ export default async function handler(req, res) {
       name,
       message,
     };
+    let client
 
-    let client;
+    const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.qvcbrxk.mongodb.net/?retryWrites=true&w=majority`
     try {
       // connecting to the database
-      client = await MongoClient(
+      client = await MongoClient.connect(
         "mongodb+srv://joel:joel@cluster0.qvcbrxk.mongodb.net/?retryWrites=true&w=majority"
       );
     } catch (error) {
@@ -34,7 +35,7 @@ export default async function handler(req, res) {
     }
 
     //   database name = my-site
-    const db = client.db("my-site");
+    const db = client.db(`${process.env.mongodb_database}`);
 
     try {
       const result = await db.collection("messages").insertOne(newMessage);
@@ -46,7 +47,7 @@ export default async function handler(req, res) {
     }
 
     client.close();
-    
+
     res
       .status(201)
       .json({ message: "successfully stored message!", data: newMessage });
