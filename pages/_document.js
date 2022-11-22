@@ -8,6 +8,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          {/* Rstructuring the html format */}
           <div id="notifications"></div>
         </body>
       </Html>
