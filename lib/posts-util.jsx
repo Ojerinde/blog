@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-// to split the metadata and markdown
+// To split the metadata and markdown
 import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "posts");
@@ -18,7 +18,7 @@ export function getPostData(postIdentifier) {
 
   //   matter expect a string. the metadata is the data and the content is the other
   const { data, content } = matter(fileContent);
-  
+
   const postData = {
     slug: postSlug,
     ...data,
